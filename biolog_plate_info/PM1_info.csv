@@ -1,0 +1,97 @@
+Metabolite,Plate,Well,KEGG
+Negative Control,PM1,A1,
+L-Arabinose,PM1,A2,C00259
+N-Acetyl-D-Glucosamine,PM1,A3,C00140
+D-Saccharic Acid,PM1,A4,C00818
+Succinic Acid,PM1,A5,C00042
+D-Galactose,PM1,A6,C00124
+L-Aspartic Acid,PM1,A7,C00049
+L-Proline,PM1,A8,C00148
+D-Alanine,PM1,A9,C00133
+D-Trehalose,PM1,A10,C01083
+D-Mannose,PM1,A11,C00159
+Dulcitol,PM1,A12,C01697
+D-Serine,PM1,B1,C00740
+D-Sorbitol,PM1,B2,C00794
+Glycerol,PM1,B3,C00116
+L-Fucose,PM1,B4,C01019
+D-Glucuronic Acid,PM1,B5,C00191
+D-Gluconic Acid,PM1,B6,C00257
+"D,L-alpha-Glycerol-Phosphate",PM1,B7,C00093
+D-Xylose,PM1,B8,C00181
+L-Lactic Acid,PM1,B9,C00186
+Formic Acid,PM1,B10,C00058
+D-Mannitol,PM1,B11,C00392
+L-Glutamic Acid,PM1,B12,C00025
+D-Glucose-6-Phosphate,PM1,C1,C00092
+D-Galactonic Acid-gamma-Lactone,PM1,C2,C03383
+"D,L-Malic Acid",PM1,C3,C00711 
+D-Ribose,PM1,C4,C00121
+Tween 20,PM1,C5,C11624
+L-Rhamnose,PM1,C6,C00507
+D-Fructose,PM1,C7,C00095
+Acetic Acid,PM1,C8,C00033
+alpha-D-Glucose,PM1,C9,C00031
+Maltose,PM1,C10,C00208
+D-Melibiose,PM1,C11,C05402
+Thymidine,PM1,C12,C00214
+L-Asparagine,PM1,D1,C00152
+D-Aspartic Acid,PM1,D2,C00402
+D-Glucosaminic Acid,PM1,D3,C03752
+"1,2-Propanediol",PM1,D4,C00583
+Tween 40,PM1,D5,D05566
+alpha-Keto-Glutaric Acid,PM1,D6,C00026
+alpha-Keto-Butyric Acid,PM1,D7,C00109
+alpha-Methyl-D-Galactoside,PM1,D8,
+alpha-D-Lactose,PM1,D9,C00243
+Lactulose,PM1,D10,C07064
+Sucrose,PM1,D11,C00089
+Uridine,PM1,D12,C00299
+L-Glutamine,PM1,E1,C00064
+m-Tartaric Acid,PM1,E2,C00552
+D-Glucose-1-Phosphate,PM1,E3,C00103
+D-Fructose-6-Phosphate,PM1,E4,C05345
+Tween 80,PM1,E5,C11625
+alpha-Hydroxy Glutaric Acid-gamma-Lactone,PM1,E6,
+alpha-Hydroxy Butyric Acid,PM1,E7,C05984
+beta-Methyl-D-Glucoside,PM1,E8,
+Adonitol,PM1,E9,C00474
+Maltotriose,PM1,E10,C01835
+2-Deoxy Adenosine,PM1,E11,C00559
+Adenosine,PM1,E12,C00212
+Glycyl-L-Aspartic Acid,PM1,F1,
+Citric Acid,PM1,F2,C00158
+myo-Inositol,PM1,F3,C00137
+D-Threonine,PM1,F4,C00820
+Fumaric Acid,PM1,F5,C00122
+Bromo Succinic Acid,PM1,F6,
+Propionic Acid,PM1,F7,C00163
+Mucic Acid,PM1,F8,C00879
+Glycolic Acid,PM1,F9,C00160
+Glyoxylic Acid,PM1,F10,C00048
+D-Cellobiose,PM1,F11,C00185
+Inosine,PM1,F12,C00294
+Glycyl-L-Glutamic Acid,PM1,G1,
+Tricarballylic Acid,PM1,G2,C19806
+L-Serine,PM1,G3,C00065
+L-Threonine,PM1,G4,C00188
+L-Alanine,PM1,G5,C00041
+L-Alanyl-Glycine,PM1,G6,
+Acetoacetic Acid,PM1,G7,C00164
+N-Acetyl-beta-D-Mannosamine,PM1,G8,C00645
+Mono Methyl Succinate,PM1,G9,
+Methyl Pyruvate,PM1,G10,
+D-Malic Acid,PM1,G11,C00497
+L-Malic Acid,PM1,G12,C00149
+Glycyl-L-Proline,PM1,H1,
+p-Hydroxy Phenyl Acetic Acid,PM1,H2,C13636
+m-Hydroxy Phenyl Acetic Acid,PM1,H3,C05593
+Tyramine,PM1,H4,C00483
+D-Psicose,PM1,H5,C06468
+L-Lyxose,PM1,H6,C01508
+Glucuronamide,PM1,H7,D01791
+Pyruvic Acid,PM1,H8,C00022
+L-Galactonic Acid-gamma-Lactone,PM1,H9,C01115
+D-Galacturonic Acid,PM1,H10,C00333
+Phenylethyl-amine,PM1,H11,C05332
+2-Aminoethanol,PM1,H12,C00189

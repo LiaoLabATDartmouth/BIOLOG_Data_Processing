@@ -1,0 +1,97 @@
+Metabolite,Plate,Well,KEGG
+Negative Control,PM2A,A1,
+Chondroitin Sulfate C,PM2A,A2,C00635
+alpha-Cyclodextrin,PM2A,A3,D08846
+beta-Cyclodextrin,PM2A,A4,C13183
+gamma-Cyclodextrin,PM2A,A5,
+Dextrin,PM2A,A6,C00721
+Gelatin,PM2A,A7,C01498
+Glycogen,PM2A,A8,C00369
+Inulin,PM2A,A9,C01355
+Laminarin,PM2A,A10,C00771
+Mannan,PM2A,A11,C00464
+Pectin,PM2A,A12,C00714
+N-Acetyl-D-Galactosamine,PM2A,B1,C01132
+N-Acetyl-Neuraminic Acid,PM2A,B2,C00270
+beta-D-Allose,PM2A,B3,C01487
+Amygdalin,PM2A,B4,C08325
+D-Arabinose,PM2A,B5,C00216
+D-Arabitol,PM2A,B6,C01904
+L-Arabitol,PM2A,B7,C00532
+Arbutin,PM2A,B8,C06186
+2-Deoxy-D-Ribose,PM2A,B9,C01801
+i-Erythritol,PM2A,B10,C00503
+D-Fucose,PM2A,B11,C01018
+3-O-beta-D-Galactopyranosyl-D-Arabinose,PM2A,B12,
+Gentiobiose,PM2A,C1,C08240
+L-Glucose,PM2A,C2,D09924
+Lactitol,PM2A,C3,D08266
+D-Melezitose,PM2A,C4,C08243
+Maltitol,PM2A,C5,D04845
+alpha-Methyl-D-Glucoside,PM2A,C6,
+beta-Methyl-D-Galactoside,PM2A,C7,C03619
+3-Methyl Glucose,PM2A,C8,
+beta-Methyl-D-Glucuronic Acid,PM2A,C9,
+alpha-Methyl-D-Mannoside,PM2A,C10,
+beta-Methyl-D-Xyloside,PM2A,C11,
+Palatinose,PM2A,C12,C01742
+D-Raffinose,PM2A,D1,C00492
+Salicin,PM2A,D2,C01451
+Sedoheptulosan,PM2A,D3,C02076
+L-Sorbose,PM2A,D4,C00247
+Stachyose,PM2A,D5,C01613
+D-Tagatose,PM2A,D6,C00795
+Turanose,PM2A,D7,C19636
+Xylitol,PM2A,D8,C00379
+N-Acetyl-D-Glucosaminitol,PM2A,D9,C00140
+gamma-Amino Butyric Acid,PM2A,D10,C00334
+delta-Amino Valeric Acid,PM2A,D11,C00431
+Butyric Acid,PM2A,D12,C00246
+Capric Acid,PM2A,E1,C01571
+Caproic Acid,PM2A,E2,C01585
+Citraconic Acid,PM2A,E3,C02226
+Citramalic Acid,PM2A,E4,C00815
+D-Glucosamine,PM2A,E5,C00329
+2-Hydroxy Benzoic Acid,PM2A,E6,C00805
+4-Hydroxy Benzoic Acid,PM2A,E7,C00156
+beta-Hydroxy Butyric Acid,PM2A,E8,C01089
+Glycolic Acid,PM2A,E9,C00160
+alpha-Keto-Valeric Acid,PM2A,E10,C06255
+Itaconic Acid,PM2A,E11,C00490
+5-Keto-D-Gluconic Acid,PM2A,E12,C01062
+D-Lactic Acid Methyl Ester,PM2A,F1,
+Malonic Acid,PM2A,F2,C00383
+Melibionic Acid,PM2A,F3,
+Oxalic Acid,PM2A,F4,C00209
+Oxalomalic Acid,PM2A,F5,C01990
+Quinic Acid,PM2A,F6,C00296
+"D-Ribono-1,4-Lactone",PM2A,F7,C02674
+Sebacic Acid,PM2A,F8,C08277 
+Sorbic Acid,PM2A,F9,D05892
+Succinamic Acid,PM2A,F10,
+D-Tartaric Acid,PM2A,F11,C02107
+L-Tartaric Acid,PM2A,F12,C00898
+Acetamide,PM2A,G1,C06244
+L-Alaninamide,PM2A,G2,
+N-Acetyl-L-Glutamic Acid,PM2A,G3,C00624
+L-Arginine,PM2A,G4,C00062
+Glycine,PM2A,G5,C00037
+L-Histidine,PM2A,G6,C00135
+L-Homoserine,PM2A,G7,C00263
+Hydroxy-L-Proline,PM2A,G8,C01157
+L-Isoleucine,PM2A,G9,C00407
+L-Leucine,PM2A,G10,C00123
+L-Lysine,PM2A,G11,C00047
+L-Methionine,PM2A,G12,C00073
+L-Ornithine,PM2A,H1,C00077
+L-Phenylalanine,PM2A,H2,C00079
+L-Pyroglutamic Acid,PM2A,H3,C01879
+L-Valine,PM2A,H4,C00183
+"D,L-Carnitine",PM2A,H5,C00318
+Sec-Butylamine,PM2A,H6,C18706
+"D,L-Octopamine",PM2A,H7,C04227
+Putrescine,PM2A,H8,C00134
+Dihydroxy Acetone,PM2A,H9,C00184
+"2,3-Butanediol",PM2A,H10,
+"2,3-Butanedione",PM2A,H11,C00741
+3-Hydroxy-2-Butanone,PM2A,H12,C00466
