@@ -6,98 +6,84 @@ import numpy as np # type: ignore
 import pandas as pd # type: ignore
 from datetime import datetime
 import os
-import scipy
 from scipy.integrate import simpson # type: ignore
 from scipy.stats import ttest_rel # type: ignore
 import random
 random.seed(42)
 from scipy.optimize import curve_fit # type: ignore
 import argparse
+from sklearn.metrics import r2_score
 import warnings
 warnings.filterwarnings('ignore')
 
+#   find the longest string
 def longest_string(strings):
     return max(strings, key=len)
 
-#   three growth curve models are defined
-def exponential_growth_model(x, y0, y1, mu):
-    return y0 + y1 * np.exp(mu * x)
+#   custom type function to enforce a float range
+def float_in_range(min_val, max_val):
+    def range_checker(value):
+        try:
+            value = float(value)
+        except ValueError:
+            raise argparse.ArgumentTypeError(f"{value} is not a valid float")
+        if not (min_val <= value <= max_val):
+            raise argparse.ArgumentTypeError(f"{value} is out of range ({min_val} to {max_val})")
+        return value
+    return range_checker
 
-def Zwietering_Gompertz_growth_model(x, y0, A, lag, mu):
-    return y0 + (A-y0)*np.exp(-np.exp(mu*np.exp(1)/A*(lag-x)+1))
+#   custom type function to enforce an integer range
+def integer_in_range(min_val, max_val):
+    def range_checker(value):
+        try:
+            value = int(value)
+        except ValueError:
+            raise argparse.ArgumentTypeError(f"{value} is not a valid integer")
+        if not (min_val <= value <= max_val):
+            raise argparse.ArgumentTypeError(f"{value} is out of range ({min_val} to {max_val})")
+        return value
+    return range_checker
 
-def Zwietering_Logistic_growth_model(x, y0, A, lag, mu):
-    return y0 + (A-y0)/(1+np.exp(4*mu/A*(lag-x)+2))
+
+#   two growth curve models are defined
+def Gompertz_growth_model(x, A, lag, mu):
+    return A*np.exp(-np.exp(mu*np.exp(1)/A*(lag-x)+1))
+
+def Logistic_growth_model(x, A, lag, mu):
+    return A/(1+np.exp(4*mu/A*(lag-x)+2))
 
 #   get R2 coefficient between observed growth curve and the best model fit
-def get_r2_coefficient(function, popt, x, y):
-    ypred = function(x, *popt)
-    _, _, r_value, _, _ = scipy.stats.linregress(ypred.astype(float), y.astype(float))
-    r_squared = r_value ** 2
-    return r_squared
+def get_r2_coef(function, popt, x, y):
+    y_pred = function(x, *popt)
+    return r2_score(y_pred=y_pred, y_true=y)
 
-#   get specific growth rate (mu)
-def get_mu(model, popt):
-    if model == 'EXP':
-        y0, y1, mu =  popt
-        return mu
-    elif model == 'GOM':
-        y0, A, lag, mu  = popt
-        return mu
-    elif model == 'LGX':
-        y0, A, lag, mu  = popt
-        return mu
-    else:
-        print('unknown fitting model.')
-        raise
-
-#   parameter fitting
+#   fitting growth curve model parameters
 def fit_model_parameters(xdata, ydata, model):
-    if model == 'EXP':
-        init_guess = [random.random(), random.random(), random.random()]
-        try:
-            best_fits, covar = curve_fit(exponential_growth_model,
-                                         xdata,
-                                         ydata,
-                                         p0=init_guess,
-                                         bounds = ([0,0,0], [10,10,10]),
-                                         maxfev=10000
-                                        )
-            r2 = get_r2_coefficient(exponential_growth_model, best_fits, xdata, ydata)
-            return True, best_fits, r2
-        except:
-            return False, [np.nan] * len(init_guess), np.nan
-    elif model == 'GOM':
-        init_guess = [random.random(), random.random(), random.random(), random.random()]
-        try:
-            best_fits, covar = curve_fit(Zwietering_Gompertz_growth_model,
-                                         xdata,
-                                         ydata,
-                                         p0=init_guess,
-                                         bounds = ([0,0,0,0], [10,10,xdata[-1],10]),
-                                         maxfev=10000
-                                        )
-            r2 = get_r2_coefficient(Zwietering_Gompertz_growth_model, best_fits, xdata, ydata)
-            return True, best_fits, r2
-        except:
-            return False, [np.nan] * len(init_guess), np.nan
-    elif model == 'LGX':
-        init_guess = [random.random(), random.random(), random.random(), random.random()]
-        try:
-            best_fits, covar = curve_fit(Zwietering_Logistic_growth_model,
-                                         xdata,
-                                         ydata,
-                                         p0=init_guess,
-                                         bounds = ([0,0,0,0], [10,10,xdata[-1],10]),
-                                         maxfev=10000
-                                        )
-            r2 = get_r2_coefficient(Zwietering_Logistic_growth_model, best_fits, xdata, ydata)
-            return True, best_fits, r2
-        except:
-            return False, [np.nan] * len(init_guess), np.nan
-    else:
-        print('unknown fitting model.')
-        raise
+    init_guess = [random.random(), random.random(), random.random()]
+    try:
+        if model == 'Logistic':
+            best_fits, covar = curve_fit(
+                Logistic_growth_model,
+                xdata,
+                ydata,
+                p0=init_guess,
+                bounds = ([0,0,0], [np.inf,xdata[-1],10]),
+                maxfev=10000
+            )
+            r2 = get_r2_coef(Logistic_growth_model, best_fits, xdata, ydata)
+        elif model == 'Gompertz':
+            best_fits, covar = curve_fit(
+                Gompertz_growth_model,
+                xdata,
+                ydata,
+                p0=init_guess,
+                bounds = ([0,0,0], [np.inf,xdata[-1],10]),
+                maxfev=10000
+            )
+            r2 = get_r2_coef(Gompertz_growth_model, best_fits, xdata, ydata)
+        return True, best_fits, r2
+    except:
+        return False, [np.nan] * len(init_guess), np.nan
 
 # read input files
 def read_input_data(folder_path):
@@ -175,12 +161,12 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="command-line argument parser")
 
     # add arguments
-    parser.add_argument('input_folder_path', type=str, help='Path to the folder containing the input Biolog output files')
-    parser.add_argument('--growth_model', type=str, default='LGX', help='Growth curve model used for data fitting')
-    parser.add_argument('--min_r2', type=float, default=0.9, help='Minimum R2 for growth curve model fitting')
-    parser.add_argument('--max_trials', type=int, default=50, help='Maximum number of trial attempts of initial guesses for growth curve model fitting')
-    parser.add_argument('--fc_cutoff', type=float, default=1.0, help='Minimum mean fold change cutoff for growth')
-    parser.add_argument('--pvalue_cutoff', type=float, default=0.05, help='Maximum pvalue cutoff for growth')
+    parser.add_argument('input_folder_path', type=str, help='Path to the folder containing the input Biolog data files')
+    parser.add_argument('--growth_model', type=str, default='Logistic', choices=['Logistic', 'Gompertz'], help='Choose between Logistic and Gompertz for modeling growth curve')
+    parser.add_argument('--min_r2', type=float_in_range(0.0, 1.0), default=0.90, help='Minimum R2 for growth curve model fitting')
+    parser.add_argument('--max_trials', type=integer_in_range(1, 10000), default=50, help='Maximum number of trial attempts of initial guesses for growth curve model fitting')
+    parser.add_argument('--fc_cutoff', type=float_in_range(1.0, np.inf), default=1.0, help='Minimum mean fold change cutoff for growth')
+    parser.add_argument('--pvalue_cutoff', type=float_in_range(0.0, 1.0), default=0.05, help='Maximum pvalue cutoff for growth')
 
     # parse the arguments
     args = parser.parse_args()
@@ -252,27 +238,33 @@ if __name__ == "__main__":
                 # growth curve model fitting
                 #---------------------------
                 curr_well_sgr_list = []
+                curr_well_r2_list = []
                 for rep in all_replicates:
-                    xdata = df_well[df_well.Replicate==rep].Time.to_numpy()
-                    ydata = df_well[df_well.Replicate==rep].OD.to_numpy()
+                    xdata = df_well[df_well.Replicate==rep].Time.to_numpy().astype(float)
+                    ydata = df_well[df_well.Replicate==rep].OD.to_numpy().astype(float)
+                    log_rely = np.log(ydata/ydata[0])
 
                     # try random initial guesses
                     r2 = 0
                     n = 0
                     while (r2 < args.min_r2) & (n < args.max_trials):
-                        _ok, _optp, _r2 = fit_model_parameters(xdata, ydata, args.growth_model)
+                        _ok, _optp, _r2 = fit_model_parameters(xdata, log_rely, args.growth_model)
                         if _ok:
                             optp = _optp
                             r2 = _r2
                         n += 1
                     if r2 >= args.min_r2:
-                        mu = get_mu(args.growth_model, optp)
+                        mu = optp[2] # optp: A, lag, mu
                         curr_well_sgr_list.append(mu)
+                        curr_well_r2_list.append(r2)
                     else:
                         curr_well_sgr_list.append(np.nan)
+                        curr_well_r2_list.append(np.nan)
 
                 curr_well_sgr = np.array(curr_well_sgr_list)
                 curr_well_sgr = np.round(curr_well_sgr.astype(float), 3)
+                curr_well_r2 = np.array(curr_well_r2_list)
+                curr_well_r2 = np.round(curr_well_r2.astype(float), 3)
                 if well == 'A1':
                     A1_well_sgr = curr_well_sgr.copy()
                     fold_change_sgr = [1.0] * len(A1_well_sgr)
@@ -285,7 +277,7 @@ if __name__ == "__main__":
                     filtered_curr_well_sgr = curr_well_sgr[non_nan_indices]
                     filtered_A1_well_sgr = A1_well_sgr[non_nan_indices]
                     pvalue_sgr = ttest_rel(filtered_curr_well_sgr, filtered_A1_well_sgr, alternative='greater')[1]
-                curr_well_res.extend([";".join(map(str, curr_well_sgr)), np.nanmean(curr_well_sgr), np.nanmean(fold_change_sgr), np.round(pvalue_sgr, 6)])
+                curr_well_res.extend([";".join(map(str, curr_well_r2)), ";".join(map(str, curr_well_sgr)), np.nanmean(curr_well_sgr), np.nanmean(fold_change_sgr), np.round(pvalue_sgr, 6)])
 
                 #-------------
                 # save results
@@ -297,7 +289,7 @@ if __name__ == "__main__":
                               columns=['Strain','Plate','Well','Metabolite','LastCommonTime',
                                        'FinalOD','FinalOD_Mean','FinalOD_MeanFC','FinalOD_Pvalue',
                                        'AUC','AUC_Mean','AUC_MeanFC','AUC_Pvalue',
-                                       'SGR','SGR_Mean','SGR_MeanFC','SGR_Pvalue'
+                                       '%s_R2'% args.growth_model, 'SGR','SGR_Mean','SGR_MeanFC','SGR_Pvalue'
                                        ])
 
     # determine growth based on cutoffs
