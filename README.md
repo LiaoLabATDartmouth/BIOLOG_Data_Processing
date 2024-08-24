@@ -39,3 +39,29 @@ To apply a more stringent p-value cutoff, run the following command:
 `python3 biolog_proc.py --pvalue_cutoff 0.01`
 
 __Note: You can specify multiple arguments the same time. For example, if you want use non-default values for both `fc_cutoff` and `pvalue_cutoff`, run the following command: `python3 biolog_proc.py --fc_cutoff 1.5 --pvalue_cutoff 0.01`.__
+
+# Ouput Formats
+The script outputs a single Excel file named `output_%Y%m%d-%H%M%S.xlsx` (%Y: year, %m: month, %d: day, %H: hour, %M: minute, %S: second). The file contains two sheets: `All` and `Summary`.
+
+The `All` sheet includes the following columns:
+- Strain: Name of the strain
+- Plate: Plate number (e.g., 'PM1', 'PM2A')
+- Well: Well ID (e.g., A5, C3)
+- Metabolite: Name of the metabolite in the well
+- LastCommonTime: The common end time point across all replicates
+- FinalOD: Endpoint OD in each replicate (values separated by semicolons)
+- FinalOD_Mean: Endpoint OD averaged across replicates
+- FinalOD_MeanFC: Ratio of the endpoint OD between the current well and the A1 well (negative control), averaged across replicates
+- FinalOD_Pvalue: Paired-sample t-test of the endpoint OD between the current well and the A1 well
+- AUC: Area under the curve in each replicate	(values separated by semicolons)
+- AUC_Mean: AUC averaged across replicates
+- AUC_MeanFC: Ratio of AUC between the current well and the A1 well (negative control), averaged across replicates
+- AUC_Pvalue: Paired-sample t-test of AUC between the current well and the A1 well
+- Curve_Fitting_R2: R2 value between observed OD and the best model fit
+- SGR: Specific growth rate in each replicate (values separated by semicolons). __If the R2 of curve fit falls below `min_r2` for a specific well, its corresponding SGR value is set to NaN.
+- SGR_Mean: SGR averaged across replicates
+- SGR_MeanFC: Ratio of SGR between the current well and the A1 well (negative control), averaged across replicates
+- SGR_Pvalue: Paired-sample t-test of SGR between the current well and the A1 well
+- GrowthStatus: For each metric, positive growth (`+`) is assigned when the mean fold change is >= `fc_cutoff` and the p-value is < `pvalue_cutoff`. Otherwise, negative growth ('-') is assigned. The growth status of all three metrics is then combined into a string in the order of Endpoint approach, AUC approach, SGR approach. For example, `++-` indicates positive growth determined by the endpoint OD approach and AUC approach, but negative growth determined by the SGR approach.
+
+The `Summary` sheet reformats the 'GrowthStatus` column from the `All` sheet to faciliate growth status comparison across strains. It lists only the metabolites where at least one strain shows growth as determined by at least one approach.
