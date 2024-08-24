@@ -162,18 +162,18 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="command-line argument parser")
 
     # add arguments
-    parser.add_argument('input_folder_path', type=str, help='Path to the folder containing the input Biolog data files')
+    parser.add_argument('--input_path', type=str, default="input_data_folder", help='Path to the folder containing the input BIOLOG Excel files')
     parser.add_argument('--growth_model', type=str, default='Logistic', choices=['Logistic', 'Gompertz'], help='Choose between Logistic and Gompertz for modeling growth curve')
     parser.add_argument('--min_r2', type=float_in_range(0.0, 1.0), default=0.90, help='Minimum R2 for growth curve model fitting')
     parser.add_argument('--max_trials', type=integer_in_range(1, 10000), default=50, help='Maximum number of trial attempts of initial guesses for growth curve model fitting')
-    parser.add_argument('--fc_cutoff', type=float_in_range(1.0, np.inf), default=1.0, help='Minimum mean fold change cutoff for growth')
+    parser.add_argument('--fc_cutoff', type=float_in_range(1.0, np.inf), default=1.2, help='Minimum mean fold change cutoff for growth')
     parser.add_argument('--pvalue_cutoff', type=float_in_range(0.0, 1.0), default=0.05, help='Maximum pvalue cutoff for growth')
 
     # parse the arguments
     args = parser.parse_args()
 
     # read input files
-    df_input = read_input_data(args.input_folder_path)
+    df_input = read_input_data(args.input_path)
 
     # processing results are stored in res
     all_res = []
@@ -246,21 +246,20 @@ if __name__ == "__main__":
                     log_rely = np.log(ydata/ydata[0])
 
                     # try random initial guesses
-                    r2 = 0
+                    max_r2 = 0
                     n = 0
-                    while (r2 < args.min_r2) & (n < args.max_trials):
+                    while (max_r2 < args.min_r2) & (n < args.max_trials):
                         _ok, _optp, _r2 = fit_model_parameters(xdata, log_rely, args.growth_model)
                         if _ok:
                             optp = _optp
-                            r2 = _r2
+                            if _r2 > max_r2:
+                                max_r2 = _r2
                         n += 1
-                    if r2 >= args.min_r2:
-                        mu = optp[2] # optp: A, lag, mu
-                        curr_well_sgr_list.append(mu)
-                        curr_well_r2_list.append(r2)
+                    if n < args.max_trials:
+                        curr_well_sgr_list.append(optp[2]) # A, lag, mu
                     else:
                         curr_well_sgr_list.append(np.nan)
-                        curr_well_r2_list.append(np.nan)
+                    curr_well_r2_list.append(max_r2)
 
                 curr_well_sgr = np.array(curr_well_sgr_list)
                 curr_well_sgr = np.round(curr_well_sgr.astype(float), 3)
@@ -286,16 +285,16 @@ if __name__ == "__main__":
                 all_res.append(curr_well_res)
 
     # generate summary in a dataframe
-    df_param = pd.DataFrame(all_res,
+    df_all_res = pd.DataFrame(all_res,
                               columns=['Strain','Plate','Well','Metabolite','LastCommonTime',
                                        'FinalOD','FinalOD_Mean','FinalOD_MeanFC','FinalOD_Pvalue',
                                        'AUC','AUC_Mean','AUC_MeanFC','AUC_Pvalue',
-                                       '%s_R2'% args.growth_model, 'SGR','SGR_Mean','SGR_MeanFC','SGR_Pvalue'
+                                       'CurveFit_R2', 'SGR','SGR_Mean','SGR_MeanFC','SGR_Pvalue'
                                        ])
 
     # determine growth based on cutoffs
     growth_status = []
-    for fod_fc, fod_pv, auc_fc, auc_pv, sgr_fc, sgr_pv in zip(df_param.FinalOD_MeanFC, df_param.FinalOD_Pvalue, df_param.AUC_MeanFC, df_param.AUC_Pvalue, df_param.SGR_MeanFC, df_param.SGR_Pvalue):
+    for fod_fc, fod_pv, auc_fc, auc_pv, sgr_fc, sgr_pv in zip(df_all_res.FinalOD_MeanFC, df_all_res.FinalOD_Pvalue, df_all_res.AUC_MeanFC, df_all_res.AUC_Pvalue, df_all_res.SGR_MeanFC, df_all_res.SGR_Pvalue):
         status_str = ''
         if (fod_fc >= args.fc_cutoff) and (fod_pv < args.pvalue_cutoff):
             status_str += '+'
@@ -310,17 +309,17 @@ if __name__ == "__main__":
         else:
             status_str += '-'
         growth_status.append(status_str)
-    df_param['GrowthStatus'] = growth_status
+    df_all_res['GrowthStatus'] = growth_status
 
     # compare growth status between strains
-    df_sum = df_param.copy()
+    df_sum = df_all_res.copy()
     df_sum = df_sum[['Strain','Plate','Metabolite','GrowthStatus']]
     df_sum = pd.pivot_table(df_sum, index=['Plate','Metabolite'], columns='Strain', values='GrowthStatus', aggfunc=longest_string).fillna('-')
     df_sum = df_sum[~(df_sum == '---').all(axis=1)].reset_index()
 
     # save to excel file
-    timestamp = time.strftime("%Y%m%d-%H%M%S")
+    timestamp = time.strftime("%Y%m%d_%H%M%S")
     with pd.ExcelWriter(f"output_{timestamp}.xlsx", engine='openpyxl') as writer:
-        df_param.to_excel(writer, sheet_name='raw output', index=False)
-        df_sum.to_excel(writer, sheet_name='growth comparison', index=False)
+        df_all_res.to_excel(writer, sheet_name='All', index=False)
+        df_sum.to_excel(writer, sheet_name='Summary', index=False)
 
