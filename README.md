@@ -22,7 +22,7 @@ To use a different folder, such as `/Users/chenliao/Desktop/BIOLOG`, run the fol
 To use the Gompertz model, run the following command:
 `python3 biolog_proc.py --growth_model Gompertz`
 
---min_r2: Specifies the minimum R² required for the growth curve model fitting. The default value is 0.9.
+--min_r2: Specifies the minimum R² required for a successful growth curve fitting. The default value is 0.9.
 To use a more stringent R² cutoff, run the following command:
 `python3 biolog_proc.py --min_r2 0.95`
 
