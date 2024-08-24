@@ -26,7 +26,7 @@ To use the Gompertz model, run the following command:
 To use a more stringent R² cutoff, run the following command:
 `python3 biolog_proc.py --min_r2 0.95`
 
---max_trials: Specifies the maximum number of trial attempts for initial guesses during the growth curve model fitting process. The default value is 50.
+--max_trials: Specifies the maximum number of trial attempts for initial guesses during growth curve fitting. The default value is 50.
 To increase the number of trial attempts, run the following command:
 `python3 biolog_proc.py --max_trials 100`
 
