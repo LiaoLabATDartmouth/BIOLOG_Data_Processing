@@ -41,7 +41,7 @@ To apply a more stringent p-value cutoff, run the following command:
 __Note: You can specify multiple arguments the same time. For example, if you want use non-default values for both `fc_cutoff` and `pvalue_cutoff`, run the following command: `python3 biolog_proc.py --fc_cutoff 1.5 --pvalue_cutoff 0.01`.__
 
 # Ouput Formats
-The script outputs a single Excel file named `output_%Y%m%d-%H%M%S.xlsx` (%Y: year, %m: month, %d: day, %H: hour, %M: minute, %S: second). The file contains two sheets: `All` and `Summary`.
+The script outputs a single Excel file named `output_%Y%m%d_%H%M%S.xlsx` (%Y: year, %m: month, %d: day, %H: hour, %M: minute, %S: second). The file contains two sheets: `All` and `Summary`.
 
 The `All` sheet includes the following columns:
 - Strain: Name of the strain
