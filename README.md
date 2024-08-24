@@ -1,11 +1,11 @@
 # Overview
-The script, biolog_proc.py, processes raw BIOLOG data files to identify the metabolites that support the growth of specfic strains. I implemented three quantitative metrics for this assessment: (1) endpoint OD; (2) area under the growth curve; and (3) specific growth rate. Each metric is evaluated based on two criteria: the average fold change of the metric (compared to negative control) must be >= `fc_cutoff`, and the p-value (based on a paried-sample t-test) must be < `pvalue_cutoff`.
+The script, biolog_proc.py, processes raw BIOLOG data files to identify the metabolites that support the growth of specfic strains. I implemented three quantitative metrics for this assessment: (1) endpoint OD; (2) area under the growth curve; and (3) specific growth rate. The specific growth rate is calculated by fitting a Logistic or Gompertz growth model to the observed OD values (see Zwietering, M.H., Jongenburger, I., Rombouts, F.M. and Van't Riet, K.J.A.E.M., 1990. Modeling of the bacterial growth curve. Applied and environmental microbiology, 56(6), pp.1875-1881, for details on these models). Each metric is evaluated based on two criteria: the average fold change of the metric (compared to negative control) must be >= `fc_cutoff`, and the p-value (based on a paried-sample t-test) must be < `pvalue_cutoff`.
 
 # Installation
 No local installation is requierd, but you will need Python3 (https://www.python.org/downloads/) to run the script in the command line. The script has been tested on Python3.9 but should work with other Python versions. The command-line parsing library `argparse` is also required. It can be easily installed by running `pip3.x install argparse` where `3.x` corresponds to the Python version you use to run the script. For example, run `pip3.9 install argparse` if you use Python3.9.
 
 # Basic Usage
-Just download the folder and put your raw BIOLOG data files under the folder `input_data_folder`. You can put as many files as you want and the script will detect all of them and parse them one at a time. 
+Download the Github folder and put your raw BIOLOG data files under the folder `input_data_folder`. You can put as many files as you want and the script will detect all of them and parse them one at a time. 
 To run the script, use the following command:
 python3 your_script_name.py input_folder_path [optional arguments]
 
