@@ -4,6 +4,7 @@
 
 import numpy as np # type: ignore
 import pandas as pd # type: ignore
+import time
 from datetime import datetime
 import os
 from scipy.integrate import simpson # type: ignore
@@ -285,7 +286,7 @@ if __name__ == "__main__":
                 all_res.append(curr_well_res)
 
     # generate summary in a dataframe
-    df_quant = pd.DataFrame(all_res,
+    df_param = pd.DataFrame(all_res,
                               columns=['Strain','Plate','Well','Metabolite','LastCommonTime',
                                        'FinalOD','FinalOD_Mean','FinalOD_MeanFC','FinalOD_Pvalue',
                                        'AUC','AUC_Mean','AUC_MeanFC','AUC_Pvalue',
@@ -294,7 +295,7 @@ if __name__ == "__main__":
 
     # determine growth based on cutoffs
     growth_status = []
-    for fod_fc, fod_pv, auc_fc, auc_pv, sgr_fc, sgr_pv in zip(df_quant.FinalOD_MeanFC, df_quant.FinalOD_Pvalue, df_quant.AUC_MeanFC, df_quant.AUC_Pvalue, df_quant.SGR_MeanFC, df_quant.SGR_Pvalue):
+    for fod_fc, fod_pv, auc_fc, auc_pv, sgr_fc, sgr_pv in zip(df_param.FinalOD_MeanFC, df_param.FinalOD_Pvalue, df_param.AUC_MeanFC, df_param.AUC_Pvalue, df_param.SGR_MeanFC, df_param.SGR_Pvalue):
         status_str = ''
         if (fod_fc >= args.fc_cutoff) and (fod_pv < args.pvalue_cutoff):
             status_str += '+'
@@ -309,16 +310,17 @@ if __name__ == "__main__":
         else:
             status_str += '-'
         growth_status.append(status_str)
-    df_quant['GrowthStatus'] = growth_status
+    df_param['GrowthStatus'] = growth_status
 
     # compare growth status between strains
-    df_sum = df_quant.copy()
+    df_sum = df_param.copy()
     df_sum = df_sum[['Strain','Plate','Metabolite','GrowthStatus']]
     df_sum = pd.pivot_table(df_sum, index=['Plate','Metabolite'], columns='Strain', values='GrowthStatus', aggfunc=longest_string).fillna('-')
     df_sum = df_sum[~(df_sum == '---').all(axis=1)].reset_index()
 
     # save to excel file
-    with pd.ExcelWriter('biolog_results_summary.xlsx', engine='openpyxl') as writer:
-        df_quant.to_excel(writer, sheet_name='raw output', index=False)
+    timestamp = time.strftime("%Y%m%d-%H%M%S")
+    with pd.ExcelWriter(f"output_{timestamp}.xlsx", engine='openpyxl') as writer:
+        df_param.to_excel(writer, sheet_name='raw output', index=False)
         df_sum.to_excel(writer, sheet_name='growth comparison', index=False)
 
