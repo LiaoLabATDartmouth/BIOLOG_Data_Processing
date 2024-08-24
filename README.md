@@ -37,3 +37,5 @@ To use a more stringent fold change cutoff, run the following command:
 --pvalue_cutoff: Specifies the maximum p-value cutoff for growth determination. The default value is 0.05.
 To apply a more stringent p-value cutoff, run the following command:
 `python3 biolog_proc.py --pvalue_cutoff 0.01`
+
+__Note: You can specify multiple arguments the same time. For example, if you want use non-default values for both `fc_cutoff` and `pvalue_cutoff`, run the following command: `python3 biolog_proc.py --fc_cutoff 1.5 --pvalue_cutoff 0.01`.__
