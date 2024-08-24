@@ -62,6 +62,6 @@ The `All` sheet includes the following columns:
 - SGR_Mean: SGR averaged across replicates
 - SGR_MeanFC: Ratio of SGR between the current well and the A1 well (negative control), averaged across replicates
 - SGR_Pvalue: Paired-sample t-test of SGR between the current well and the A1 well
-- GrowthStatus: For each metric, positive growth (`+`) is assigned when the mean fold change is >= `fc_cutoff` and the p-value is < `pvalue_cutoff`. Otherwise, negative growth ('-') is assigned. The growth status of all three metrics is then combined into a string in the order of Endpoint approach, AUC approach, SGR approach. For example, `++-` indicates positive growth determined by the endpoint OD approach and AUC approach, but negative growth determined by the SGR approach.
+- GrowthStatus: For each metric, positive growth (`+`) is assigned when the mean fold change is >= `fc_cutoff` and the p-value is < `pvalue_cutoff`. Otherwise, negative growth ('-') is assigned. The growth status of all three metrics is then combined into a 3-letter string in the order of Endpoint approach, AUC approach, SGR approach. For example, `++-` indicates positive growth determined by the endpoint OD approach and AUC approach, but negative growth determined by the SGR approach.
 
 The `Summary` sheet reformats the 'GrowthStatus` column from the `All` sheet to faciliate growth status comparison across strains. It lists only the metabolites where at least one strain shows growth as determined by at least one approach.
