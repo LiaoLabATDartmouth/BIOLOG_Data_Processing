@@ -57,7 +57,7 @@ The `All` sheet includes the following columns:
 - AUC_Mean: AUC averaged across replicates
 - AUC_MeanFC: Ratio of AUC between the current well and the A1 well (negative control), averaged across replicates
 - AUC_Pvalue: Paired-sample t-test of AUC between the current well and the A1 well
-- CurveFit_R2: R2 value between observed OD and the best model fit
+- CurveFit_R2: R2 value between the observed OD and the best model fit. It is the R2 value that first exceeds `min_r2` among all initial guess trials. If all R2 values remain below `min_r2` throughout the trials, the maximum R2 value from these trials is reported.
 - SGR: Specific growth rate in each replicate (values separated by semicolons). __If `CurveFit_R2` is less than `min_r2` for a specific well, its corresponding SGR value is set to NaN__.
 - SGR_Mean: SGR averaged across replicates
 - SGR_MeanFC: Ratio of SGR between the current well and the A1 well (negative control), averaged across replicates
