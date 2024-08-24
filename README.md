@@ -48,17 +48,17 @@ The `All` sheet includes the following columns:
 - Plate: Plate number (e.g., 'PM1', 'PM2A')
 - Well: Well ID (e.g., A5, C3)
 - Metabolite: Name of the metabolite in the well
-- LastCommonTime: The common end time point across all replicates
+- LastCommonTime: The common end time point (unit hour) across all replicates
 - FinalOD: Endpoint OD in each replicate (values separated by semicolons)
 - FinalOD_Mean: Endpoint OD averaged across replicates
 - FinalOD_MeanFC: Ratio of the endpoint OD between the current well and the A1 well (negative control), averaged across replicates
 - FinalOD_Pvalue: Paired-sample t-test of the endpoint OD between the current well and the A1 well
-- AUC: Area under the curve in each replicate	(values separated by semicolons)
+- AUC: Area under the curve (unit hour*OD600) in each replicate	(values separated by semicolons)
 - AUC_Mean: AUC averaged across replicates
 - AUC_MeanFC: Ratio of AUC between the current well and the A1 well (negative control), averaged across replicates
 - AUC_Pvalue: Paired-sample t-test of AUC between the current well and the A1 well
 - CurveFit_R2: R2 value between the observed OD and the best model fit. It is the R2 value that first exceeds `min_r2` among all initial guess trials. If all R2 values remain below `min_r2` throughout the trials, the maximum R2 value from these trials is reported.
-- SGR: Specific growth rate in each replicate (values separated by semicolons). __If `CurveFit_R2` is less than `min_r2` for a specific well, its corresponding SGR value is set to NaN__.
+- SGR: Specific growth rate (unit 1/hour) in each replicate (values separated by semicolons). __If `CurveFit_R2` is less than `min_r2` for a specific well, its corresponding SGR value is set to NaN__.
 - SGR_Mean: SGR averaged across replicates
 - SGR_MeanFC: Ratio of SGR between the current well and the A1 well (negative control), averaged across replicates
 - SGR_Pvalue: Paired-sample t-test of SGR between the current well and the A1 well
