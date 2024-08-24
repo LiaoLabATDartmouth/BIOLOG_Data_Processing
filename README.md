@@ -7,29 +7,33 @@ No local installation is requierd, but you will need Python3 (https://www.python
 # Basic Usage
 Download the Github repository and place your raw BIOLOG Excel files in the folder `input_data_folder`. You can include as many files as you like; the script will automatically detect and parse each one. The Excel file names can be arbibutary, but the sheet names must follow the format: PMX_Y_Z (where X is the PM plate number, Y is the plate replicate number, and Z is the strain name). Ensure that each sheet name is unique and appears only once across all Excel files.
 
-To run the script, use the following command:
-python3 your_script_name.py input_folder_path [optional arguments]
+To run the script, type the following command in the command line:
 
-## Positional Argument
-input_folder_path (required): Specifies the path to the folder containing the input Biolog data.
+__Python3 (or Python3.x) biolog_proc.py [optional arguments]__
 
-## Optional Arguments
---growth_model (optional): Specifies the growth curve model to be used for data fitting. The default model is 'Logistic'.
+`[optional_arguments]` indicates that you can use the script's default settings without providing any arguments. So the simplest command would be `Python3 (or Python3.x) biolog_proc.py`.
+
+# Optional Arguments
+--input_path: Specifies the path to the folder containing the input Biolog data. The default path is `input_data_folder`.
+To use a different folder, such as `/Users/chenliao/Desktop/BIOLOG`, run the following command:
+`python3 biolog_proc.py --input_path /Users/chenliao/Desktop/BIOLOG`
+
+--growth_model: Specifies the growth curve model to be used for data fitting. The default model is 'Logistic'.
 To use the Gompertz model, run the following command:
-python3 biolog_proc.py /path/to/input_data_folder --growth_model Gompertz
+`python3 biolog_proc.py --growth_model Gompertz`
 
---min_r2 (optional): Specifies the minimum R² required for the growth curve model fitting. The default value is 0.9.
+--min_r2: Specifies the minimum R² required for the growth curve model fitting. The default value is 0.9.
 To use a more stringent R² cutoff, run the following command:
-python3 biolog_proc.py /path/to/input_data_folder --min_r2 0.95
+`python3 biolog_proc.py --min_r2 0.95`
 
---max_trials (optional): Sets the maximum number of trial attempts for initial guesses during the growth curve model fitting process. The default value is 50.
-To use more trial attempts, run the following command:
-python3 biolog_proc.py /path/to/input_data_folder --max_trials 100
+--max_trials: Specifies the maximum number of trial attempts for initial guesses during the growth curve model fitting process. The default value is 50.
+To increase the number of trial attempts, run the following command:
+`python3 biolog_proc.py --max_trials 100`
 
---fc_cutoff (optional): Specifies the minimum mean fold change cutoff for growth determination. The default value is 1.2.
-To use a more stringent cutoff for fold change, run the following command:
-python3 biolog_proc.py /path/to/input_data_folder --fc_cutoff 1.5
+--fc_cutoff: Specifies the minimum mean fold change cutoff for growth determination. The default value is 1.2.
+To use a more stringent fold change cutoff, run the following command:
+`python3 biolog_proc.py --fc_cutoff 1.5`
 
---pvalue_cutoff (optional): Specifies the maximum p-value cutoff for growth determination. The default value is 0.05.
-To use a more stringent pvalue cutoff, run the following command:
-python3 biolog_proc.py /path/to/input_data_folder --pvalue_cutoff 0.01
+--pvalue_cutoff: Specifies the maximum p-value cutoff for growth determination. The default value is 0.05.
+To apply a more stringent p-value cutoff, run the following command:
+`python3 biolog_proc.py --pvalue_cutoff 0.01`
