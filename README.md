@@ -30,11 +30,11 @@ To use a more stringent R² cutoff, run the following command:
 To increase the number of trial attempts, run the following command:
 `python3 biolog_proc.py --max_trials 100`
 
---fc_cutoff: Specifies the minimum mean fold change cutoff for growth determination. The default value is 1.2.
+--fc_cutoff: Specifies the minimum mean fold change for a positive growth phenotype. The default value is 1.2.
 To use a more stringent fold change cutoff, run the following command:
 `python3 biolog_proc.py --fc_cutoff 1.5`
 
---pvalue_cutoff: Specifies the maximum p-value cutoff for growth determination. The default value is 0.05.
+--pvalue_cutoff: Specifies the maximum p-value for a positive growth phenotype. The default value is 0.05.
 To apply a more stringent p-value cutoff, run the following command:
 `python3 biolog_proc.py --pvalue_cutoff 0.01`
 
