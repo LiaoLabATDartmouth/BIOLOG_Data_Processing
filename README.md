@@ -58,7 +58,7 @@ The `All` sheet includes the following columns:
 - AUC_MeanFC: Ratio of AUC between the current well and the A1 well (negative control), averaged across replicates
 - AUC_Pvalue: Paired-sample t-test of AUC between the current well and the A1 well
 - CurveFit_R2: R2 value between observed OD and the best model fit
-- SGR: Specific growth rate in each replicate (values separated by semicolons). __If `Curve_Fit_R2` is less than `min_r2` for a specific well, its corresponding SGR value is set to NaN__.
+- SGR: Specific growth rate in each replicate (values separated by semicolons). __If `CurveFit_R2` is less than `min_r2` for a specific well, its corresponding SGR value is set to NaN__.
 - SGR_Mean: SGR averaged across replicates
 - SGR_MeanFC: Ratio of SGR between the current well and the A1 well (negative control), averaged across replicates
 - SGR_Pvalue: Paired-sample t-test of SGR between the current well and the A1 well
