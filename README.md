@@ -1,5 +1,7 @@
 # Overview
-This script `biolog_proc.py` processes raw BIOLOG output files to determine the metabolites that strains can grow on. I implemented three quantitative metrics: (1) endpoint OD; (2) area under the curve; and (3) the specific growth rate. Below is a guide on how to run the pipeline with various command-line arguments.
+The script, biolog_proc.py, processes raw BIOLOG data files to identify the metabolites that support the growth of specfic strains. I implemented three quantitative metrics for this assessment: (1) endpoint OD; (2) area under the growth curve; and (3) specific growth rate. Each metric is evaluated based on two criteria: the average fold change of the metric (compared to negative control) must be >= `fc_cutoff`, and the p-value (based on a paried-sample t-test) must be < `pvalue_cutoff`.
+
+Below is a guide on how to run the pipeline with various command-line arguments.
 
 # Basic Usage
 Download the folder and put your raw BIOLOG files into the folder `input_data_folder`. To run the script, use the following command:
