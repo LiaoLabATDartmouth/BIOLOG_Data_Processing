@@ -14,27 +14,27 @@ __Python3 (or Python3.x) biolog_proc.py [optional arguments]__
 `[optional_arguments]` indicates that you can use the script's default settings without providing any arguments. So the simplest command would be `Python3 (or Python3.x) biolog_proc.py`.
 
 # Optional Arguments
---input_path: Specifies the path to the folder containing the input Biolog data. The default path is `input_data_folder`.
+`--input_path`: Specifies the path to the folder containing the input Biolog data. The default path is `input_data_folder`.
 To use a different folder, such as `/Users/chenliao/Desktop/BIOLOG`, run the following command:
 `python3 biolog_proc.py --input_path /Users/chenliao/Desktop/BIOLOG`
 
---growth_model: Specifies the growth curve model to be used for data fitting. The default model is 'Logistic'.
+`--growth_model`: Specifies the growth curve model to be used for data fitting. The default model is 'Logistic'.
 To use the Gompertz model, run the following command:
 `python3 biolog_proc.py --growth_model Gompertz`
 
---min_r2: Specifies the minimum R² required for a successful growth curve fitting. The default value is 0.9.
+`--min_r2`: Specifies the minimum R² required for a successful growth curve fitting. The default value is 0.9.
 To use a more stringent R² cutoff, run the following command:
 `python3 biolog_proc.py --min_r2 0.95`
 
---max_trials: Specifies the maximum number of trial attempts for initial guesses during growth curve fitting. The default value is 50.
+`--max_trials`: Specifies the maximum number of trial attempts for initial guesses during growth curve fitting. The default value is 50.
 To increase the number of trial attempts, run the following command:
 `python3 biolog_proc.py --max_trials 100`
 
---fc_cutoff: Specifies the minimum mean fold change for a positive growth phenotype. The default value is 1.2.
+`--fc_cutoff`: Specifies the minimum mean fold change for a positive growth phenotype. The default value is 1.2.
 To use a more stringent fold change cutoff, run the following command:
 `python3 biolog_proc.py --fc_cutoff 1.5`
 
---pvalue_cutoff: Specifies the maximum p-value for a positive growth phenotype. The default value is 0.05.
+`--pvalue_cutoff`: Specifies the maximum p-value for a positive growth phenotype. The default value is 0.05.
 To apply a more stringent p-value cutoff, run the following command:
 `python3 biolog_proc.py --pvalue_cutoff 0.01`
 
