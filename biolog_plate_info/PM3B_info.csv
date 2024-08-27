@@ -1,0 +1,97 @@
+Metabolite,Plate,Well,KEGG
+Negative Control,PM3B,A1,
+Ammonia,PM3B,A2,C00014
+Nitrite,PM3B,A3,C00088
+Nitrate,PM3B,A4,C00244
+Urea,PM3B,A5,C00086
+Biuret,PM3B,A6,C06555
+L-Alanine,PM3B,A7,C00041
+L-Arginine,PM3B,A8,C00062
+L-Asparagine,PM3B,A9,C00152
+L-Aspartic Acid,PM3B,A10,C00049
+L-Cysteine,PM3B,A11,C00491
+L-Glutamic Acid,PM3B,A12,C00025
+L-Glutamine,PM3B,B1,C00064
+Glycine,PM3B,B2,C00037
+L-Histidine,PM3B,B3,C00135
+L-Isoleucine,PM3B,B4,C00407
+L-Leucine,PM3B,B5,C00123
+L-Lysine,PM3B,B6,C00047
+L-Methionine,PM3B,B7,C00073
+L-Phenylalanine,PM3B,B8,C00079
+L-Proline,PM3B,B9,C00148
+L-Serine,PM3B,B10,C00065
+L-Threonine,PM3B,B11,C00188
+L-Tryptophan,PM3B,B12,C00078
+L-Tyrosine,PM3B,C1,C00082
+L-Valine,PM3B,C2,C00183
+D-Alanine,PM3B,C3,C00133
+D-Asparagine,PM3B,C4,C01905
+D-Aspartic Acid,PM3B,C5,C00402
+D-Glutamic Acid,PM3B,C6,C00217
+D-Lysine,PM3B,C7,C00739
+D-Serine,PM3B,C8,C00740
+D-Valine,PM3B,C9,C06417
+L-Citrulline,PM3B,C10,C00327
+L-Homoserine,PM3B,C11,C00263
+L-Ornithine,PM3B,C12,C00077
+"N-Acetyl-D,L-Glutamic Acid",PM3B,D1,C00624
+N-Phthaloyl-L-Glutamic Acid,PM3B,D2,
+L-Pyroglutamic Acid,PM3B,D3,C01879
+Hydroxylamine,PM3B,D4,C00192
+Methylamine,PM3B,D5,C00218
+N-Amylamine,PM3B,D6,
+N-Butylamine,PM3B,D7,C18706
+Ethylamine,PM3B,D8,C00797
+Ethanolamine,PM3B,D9,C00189
+Ethylenediamine,PM3B,D10,D01114
+Putrescine,PM3B,D11,C00134
+Agmatine,PM3B,D12,C00179
+Histamine,PM3B,E1,C00388
+beta-Phenylethylamine,PM3B,E2,C05332
+Tyramine,PM3B,E3,C00483
+Acetamide,PM3B,E4,C06244
+Formamide,PM3B,E5,C00488
+Glucuronamide,PM3B,E6,D01791
+"D,L-Lactamide",PM3B,E7,
+D-Glucosamine,PM3B,E8,C00329
+D-Galactosamine,PM3B,E9,C02262
+D-Mannosamine,PM3B,E10,C03570
+N-Acetyl-D-Glucosamine,PM3B,E11,C00140
+N-Acetyl-D-Galactosamine,PM3B,E12,C01132
+N-Acetyl-D-Mannosamine,PM3B,F1,C04257
+Adenine,PM3B,F2,C00147
+Adenosine,PM3B,F3,C00212
+Cytidine,PM3B,F4,C00475
+Cytosine,PM3B,F5,C00380
+Guanine,PM3B,F6,C00242
+Guanosine,PM3B,F7,C00387
+Thymine,PM3B,F8,C00178
+Thymidine,PM3B,F9,C00214
+Uracil,PM3B,F10,C00106
+Uridine,PM3B,F11,C00299
+Inosine,PM3B,F12,C00294
+Xanthine,PM3B,G1,C00385
+Xanthosine,PM3B,G2,C01762
+Uric Acid,PM3B,G3,C00366
+Alloxan,PM3B,G4,
+Allantoin,PM3B,G5,C02350
+Parabanic Acid,PM3B,G6,
+"D,L-alpha-Amino-N-Butyric Acid",PM3B,G7,
+Gamma-Amino-N-Butyric Acid,PM3B,G8,C00334
+Epsilon-Amino-N-Caproic Acid,PM3B,G9,C02378
+"D,L-alpha-Amino-Caprylic Acid",PM3B,G10,
+Delta-Amino-N-Valeric Acid,PM3B,G11,
+Alpha-Amino-N-Valeric Acid,PM3B,G12,
+Ala-Asp,PM3B,H1,
+Ala-Gln,PM3B,H2,
+Ala-Glu,PM3B,H3,
+Ala-Gly,PM3B,H4,
+Ala-His,PM3B,H5,
+Ala-Leu,PM3B,H6,
+Ala-Thr,PM3B,H7,
+Gly-Asn,PM3B,H8,
+Gly-Gln,PM3B,H9,
+Gly-Glu,PM3B,H10,
+Gly-Met,PM3B,H11,
+Met-Ala,PM3B,H12,
