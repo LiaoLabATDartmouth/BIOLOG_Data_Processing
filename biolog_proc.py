@@ -7,6 +7,7 @@ import pandas as pd # type: ignore
 import time
 from datetime import datetime
 import os
+import re
 from scipy.integrate import simpson # type: ignore
 from scipy.stats import ttest_rel # type: ignore
 import random
@@ -16,6 +17,12 @@ import argparse
 from sklearn.metrics import r2_score
 import warnings
 warnings.filterwarnings('ignore')
+
+# sort the columns using the custom key
+def custom_sort_key(column):
+    match = re.match(r"([A-Z]+)(\d+)", column)
+    if match:
+        return (match.group(1), int(match.group(2)))
 
 #   find the longest string
 def longest_string(strings):
@@ -180,10 +187,8 @@ if __name__ == "__main__":
 
     # iterate over all combinations of strains, plates, and wells
     all_strains = list(df_input.drop_duplicates('Strain').Strain)
-    all_plates = list(df_input.drop_duplicates('Plate').Plate)
-    all_wells = list(df_input.drop_duplicates('Well').Well)
-    all_replicates = list(df_input.drop_duplicates('Replicate').Replicate)
     for strain in all_strains:
+        all_plates = list(df_input[df_input.Strain==strain].drop_duplicates('Plate').sort_values('Plate').Plate)
         for plate in all_plates:
             # determine end time point as the last common time point across replicates
             df_A1 = df_input[(df_input.Strain==strain) & (df_input.Plate==plate) & (df_input.Well=='A1')] # negative control well
@@ -195,9 +200,13 @@ if __name__ == "__main__":
             A1_well_final_od = None # OD at the last time point
             A1_well_auc = None # area under the cruve
             A1_well_sgr = None # specific growth rate
+
+            all_wells = list(df_input[(df_input.Strain==strain) & (df_input.Plate==plate)].drop_duplicates('Well').Well)
+            all_wells = sorted(all_wells, key=custom_sort_key)
             for well in all_wells:
                 df_well = df_input[(df_input.Strain==strain) & (df_input.Plate==plate) & (df_input.Well==well) & (df_input.Time <= last_common_time)]
                 df_well = df_well.sort_values(['Replicate', 'Time'])
+                all_replicates = list(df_well.drop_duplicates('Replicate').sort_values('Replicate').Replicate)
                 metabolite = df_well.Metabolite.values[0]
                 curr_well_res = [strain, plate, well, metabolite, last_common_time]
 
