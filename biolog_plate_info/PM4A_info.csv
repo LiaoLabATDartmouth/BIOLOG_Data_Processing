@@ -67,4 +67,31 @@ Thiophosphate,PM4A,F5,
 Dithiophosphate,PM4A,F6,
 L-Cysteine,PM4A,F7,C00097
 D-Cysteine,PM4A,F8,C00793
-L-Cysteinyl-Glycine,PM4A
+L-Cysteinyl-Glycine,PM4A,F9,C01419
+L-Cysteic Acid,PM4A,F10,C00506
+Cysteamine,PM4A,F11,C01678
+L-Cysteine Sulfinic Acid,PM4A,F12,C00606
+N-Acetyl-L-Cysteine,PM4A,G1,C06809
+S-Methyl-L-Cysteine,PM4A,G2,C22040
+Cystathionine,PM4A,G3,C02291
+Lanthionine,PM4A,G4,
+Glutathione,PM4A,G5,C00051
+"D,L-Ethionine",PM4A,G6,
+L-Methionine,PM4A,G7,C00073
+D-Methionine,PM4A,G8,C00855
+Glycyl-L-Methionine,PM4A,G9,
+"N-Acetyl-D,L-Methionine",PM4A,G10,C02712
+L-Methionine Sulfoxide,PM4A,G11,C02989
+L-Methionine Sulfone,PM4A,G12,
+L-Djenkolic Acid,PM4A,H1,C08275
+Thiourea,PM4A,H2,C14415
+1-Thio-beta-D-Glucose,PM4A,H3,
+"D,L-Lipoamide",PM4A,H4,C00248
+Taurocholic Acid,PM4A,H5,C05122
+Taurine,PM4A,H6,C00245
+Hypotaurine,PM4A,H7,C00519
+p-Amino Benzene Sulfonic Acid,PM4A,H8,C06335
+Butane Sulfonic Acid,PM4A,H9,
+2-Hydroxyethane Sulfonic Acid,PM4A,H10,C05123
+Methane Sulfonic Acid,PM4A,H11,C11145
+Tetramethylene Sulfone,PM4A,H12,

@@ -203,6 +203,7 @@ if __name__ == "__main__":
 
             all_wells = list(df_input[(df_input.Strain==strain) & (df_input.Plate==plate)].drop_duplicates('Well').Well)
             all_wells = sorted(all_wells, key=custom_sort_key) # make sure that wells are processed from A to H and 1 to 12 in order
+            # print(all_wells)
             for well in all_wells:
                 df_well = df_input[(df_input.Strain==strain) & (df_input.Plate==plate) & (df_input.Well==well) & (df_input.Time <= last_common_time)]
                 df_well = df_well.sort_values(['Replicate', 'Time'])
