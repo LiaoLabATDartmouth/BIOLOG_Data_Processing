@@ -197,12 +197,12 @@ if __name__ == "__main__":
             last_common_time = max(occurrence[occurrence==n_reps].index) # find the latest time point that occurs in all replicates
 
             # analyze growth curve for each well
-            A1_well_final_od = None # OD at the last time point
-            A1_well_auc = None # area under the cruve
-            A1_well_sgr = None # specific growth rate
+            neg_ctr_final_od = None # OD at the last time point
+            neg_ctr_auc = None # area under the cruve
+            neg_ctr_sgr = None # specific growth rate
 
             all_wells = list(df_input[(df_input.Strain==strain) & (df_input.Plate==plate)].drop_duplicates('Well').Well)
-            all_wells = sorted(all_wells, key=custom_sort_key)
+            all_wells = sorted(all_wells, key=custom_sort_key) # make sure that wells are processed from A to H and 1 to 12 in order
             for well in all_wells:
                 df_well = df_input[(df_input.Strain==strain) & (df_input.Plate==plate) & (df_input.Well==well) & (df_input.Time <= last_common_time)]
                 df_well = df_well.sort_values(['Replicate', 'Time'])
@@ -215,13 +215,13 @@ if __name__ == "__main__":
                 #-------------------
                 curr_well_final_od = df_well[df_well.Time==last_common_time].sort_values('Replicate').OD.to_numpy()
                 curr_well_final_od = np.round(curr_well_final_od.astype(float), 3)
-                if well == 'A1':
-                    A1_well_final_od = curr_well_final_od.copy()
-                    fold_change_final_od = [1.0] * len(A1_well_final_od)
+                if (well == 'A1') or ((plate == 'PM4A') and (well == 'F1')):
+                    neg_ctr_final_od = curr_well_final_od.copy()
+                    fold_change_final_od = [1.0] * len(neg_ctr_final_od)
                     pvalue_final_od = np.nan
                 else:
-                    fold_change_final_od = curr_well_final_od/A1_well_final_od
-                    pvalue_final_od = ttest_rel(curr_well_final_od, A1_well_final_od, alternative='greater')[1]
+                    fold_change_final_od = curr_well_final_od/neg_ctr_final_od
+                    pvalue_final_od = ttest_rel(curr_well_final_od, neg_ctr_final_od, alternative='greater')[1]
                 curr_well_res.extend([";".join(map(str, curr_well_final_od)), np.mean(curr_well_final_od), np.mean(fold_change_final_od), np.round(pvalue_final_od, 6)])
 
                 #---------------------
@@ -235,13 +235,13 @@ if __name__ == "__main__":
                     curr_well_auc_list.append(area)
                 curr_well_auc = np.array(curr_well_auc_list)
                 curr_well_auc = np.round(curr_well_auc.astype(float), 3)
-                if well == 'A1':
-                    A1_well_auc = curr_well_auc.copy()
-                    fold_change_auc = [1.0] * len(A1_well_auc)
+                if (well == 'A1') or ((plate == 'PM4A') and (well == 'F1')):
+                    neg_ctr_auc = curr_well_auc.copy()
+                    fold_change_auc = [1.0] * len(neg_ctr_auc)
                     pvalue_auc = np.nan
                 else:
-                    fold_change_auc = curr_well_auc/A1_well_auc
-                    pvalue_auc = ttest_rel(curr_well_auc, A1_well_auc, alternative='greater')[1]
+                    fold_change_auc = curr_well_auc/neg_ctr_auc
+                    pvalue_auc = ttest_rel(curr_well_auc, neg_ctr_auc, alternative='greater')[1]
                 curr_well_res.extend([";".join(map(str, curr_well_auc)), np.mean(curr_well_auc), np.mean(fold_change_auc), np.round(pvalue_auc, 6)])
 
                 #---------------------------
@@ -274,18 +274,17 @@ if __name__ == "__main__":
                 curr_well_sgr = np.round(curr_well_sgr.astype(float), 3)
                 curr_well_r2 = np.array(curr_well_r2_list)
                 curr_well_r2 = np.round(curr_well_r2.astype(float), 3)
-                if well == 'A1':
-                    A1_well_sgr = curr_well_sgr.copy()
-                    fold_change_sgr = [1.0] * len(A1_well_sgr)
+                if (well == 'A1') or ((plate == 'PM4A') and (well == 'F1')):
+                    neg_ctr_sgr = curr_well_sgr.copy()
+                    fold_change_sgr = [1.0] * len(neg_ctr_sgr)
                     pvalue_sgr = np.nan
                 else:
-                    fold_change_sgr = curr_well_sgr/A1_well_sgr
-
+                    fold_change_sgr = curr_well_sgr/neg_ctr_sgr
                     # remove nan in both current and A1 well data before calculating p value
-                    non_nan_indices = ~np.isnan(curr_well_sgr) & ~np.isnan(A1_well_sgr)
+                    non_nan_indices = ~np.isnan(curr_well_sgr) & ~np.isnan(neg_ctr_sgr)
                     filtered_curr_well_sgr = curr_well_sgr[non_nan_indices]
-                    filtered_A1_well_sgr = A1_well_sgr[non_nan_indices]
-                    pvalue_sgr = ttest_rel(filtered_curr_well_sgr, filtered_A1_well_sgr, alternative='greater')[1]
+                    filtered_neg_ctr_sgr = neg_ctr_sgr[non_nan_indices]
+                    pvalue_sgr = ttest_rel(filtered_curr_well_sgr, filtered_neg_ctr_sgr, alternative='greater')[1]
                 curr_well_res.extend([";".join(map(str, curr_well_r2)), ";".join(map(str, curr_well_sgr)), np.nanmean(curr_well_sgr), np.nanmean(fold_change_sgr), np.round(pvalue_sgr, 6)])
 
                 #-------------
@@ -296,14 +295,14 @@ if __name__ == "__main__":
     # generate summary in a dataframe
     df_all_res = pd.DataFrame(all_res,
                               columns=['Strain','Plate','Well','Metabolite','LastCommonTime',
-                                       'FinalOD','FinalOD_Mean','FinalOD_MeanFC','FinalOD_Pvalue',
+                                       'EOD','EOD_Mean','EOD_MeanFC','EOD_Pvalue',
                                        'AUC','AUC_Mean','AUC_MeanFC','AUC_Pvalue',
                                        'CurveFit_R2', 'SGR','SGR_Mean','SGR_MeanFC','SGR_Pvalue'
                                        ])
 
     # determine growth based on cutoffs
     growth_status = []
-    for fod_fc, fod_pv, auc_fc, auc_pv, sgr_fc, sgr_pv in zip(df_all_res.FinalOD_MeanFC, df_all_res.FinalOD_Pvalue, df_all_res.AUC_MeanFC, df_all_res.AUC_Pvalue, df_all_res.SGR_MeanFC, df_all_res.SGR_Pvalue):
+    for fod_fc, fod_pv, auc_fc, auc_pv, sgr_fc, sgr_pv in zip(df_all_res.EOD_MeanFC, df_all_res.EOD_Pvalue, df_all_res.AUC_MeanFC, df_all_res.AUC_Pvalue, df_all_res.SGR_MeanFC, df_all_res.SGR_Pvalue):
         status_str = ''
         if (fod_fc >= args.fc_cutoff) and (fod_pv < args.pvalue_cutoff):
             status_str += '+'
@@ -324,7 +323,13 @@ if __name__ == "__main__":
     df_sum = df_all_res.copy()
     df_sum = df_sum[['Strain','Plate','Metabolite','GrowthStatus']]
     df_sum = pd.pivot_table(df_sum, index=['Plate','Metabolite'], columns='Strain', values='GrowthStatus', aggfunc=longest_string).fillna('-')
-    df_sum = df_sum[~(df_sum == '---').all(axis=1)].reset_index()
+    df_sum = df_sum[~(df_sum == '---').all(axis=1)]
+    all_strains = list(df_sum.columns)
+    for strain in all_strains:
+        df_sum[strain + '_EOD'] = [status[0] for status in df_sum[strain]]
+        df_sum[strain + '_AUC'] = [status[1] for status in df_sum[strain]]
+        df_sum[strain + '_SGR'] = [status[2] for status in df_sum[strain]]
+    df_sum = df_sum.reset_index().drop(all_strains, axis=1)
 
     # save to excel file
     timestamp = time.strftime("%Y%m%d_%H%M%S")

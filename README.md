@@ -45,14 +45,14 @@ The script outputs a single Excel file named `output_%Y%m%d_%H%M%S.xlsx` (%Y: ye
 
 The `All` sheet includes the following columns:
 - Strain: Name of the strain
-- Plate: Plate number (e.g., 'PM1', 'PM2A')
+- Plate: Plate number ('PM1', 'PM2A', 'PM3B', 'PM4A')
 - Well: Well ID (e.g., A5, C3)
 - Metabolite: Name of the metabolite in the well
 - LastCommonTime: The common end time point (unit hour) across all replicates
-- FinalOD: Endpoint OD in each replicate (values separated by semicolons)
-- FinalOD_Mean: Endpoint OD averaged across replicates
-- FinalOD_MeanFC: Ratio of the endpoint OD between the current well and the A1 well (negative control), averaged across replicates
-- FinalOD_Pvalue: Paired-sample t-test of the endpoint OD between the current well and the A1 well
+- EOD: Endpoint OD in each replicate (values separated by semicolons)
+- EOD_Mean: Endpoint OD averaged across replicates
+- EOD_MeanFC: Ratio of the endpoint OD between the current well and the A1 well (negative control), averaged across replicates
+- EOD_Pvalue: Paired-sample t-test of the endpoint OD between the current well and the A1 well
 - AUC: Area under the curve (unit hour*OD600) in each replicate	(values separated by semicolons)
 - AUC_Mean: AUC averaged across replicates
 - AUC_MeanFC: Ratio of AUC between the current well and the A1 well (negative control), averaged across replicates

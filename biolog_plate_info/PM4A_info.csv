@@ -1,0 +1,70 @@
+Metabolite,Plate,Well,KEGG
+Negative Control,PM4A,A1,
+Phosphate,PM4A,A2,C00009
+Pyrophosphate,PM4A,A3,C00013
+Trimeta-phosphate,PM4A,A4,C02466
+Tripoly-phosphate,PM4A,A5,C00536
+Triethyl Phosphate,PM4A,A6,
+Hypophosphite,PM4A,A7,
+Adenosine-2Õ-monophosphate,PM4A,A8,C00946
+Adenosine-3Õ-monophosphate,PM4A,A9,C01367
+Adenosine-5Õ-monophosphate,PM4A,A10,C00020
+"Adenosine-2Õ,3Õ-cyclic monophosphate",PM4A,A11,C08355
+"Adenosine-3Õ,5Õ-cyclic monophosphate",PM4A,A12,C00575
+Thiophosphate,PM4A,B1,
+Dithiophosphate,PM4A,B2,
+"D,L-alpha-Glycerol Phosphate",PM4A,B3,C03189
+beta-Glycerol Phosphate,PM4A,B4,C02979
+Carbamyl Phosphate,PM4A,B5,C00169
+D-2-Phospho-Glyceric Acid,PM4A,B6,C00631
+D-3-Phospho-Glyceric Acid,PM4A,B7,C00197
+Guanosine-2Õ-monophosphate,PM4A,B8,
+Guanosine-3Õ-monophosphate,PM4A,B9,C06193
+Guanosine-5Õ-monophosphate,PM4A,B10,C00144
+"Guanosine-2Õ,3Õ-cyclic monophosphate",PM4A,B11,C06194
+"Guanosine-3Õ,5Õ-cyclic monophosphate",PM4A,B12,C00942
+Phosphoenol Pyruvate,PM4A,C1,C00074
+Phospho-Glycolic Acid,PM4A,C2,C00988
+D-Glucose-1-Phosphate,PM4A,C3,C00103
+D-Glucose-6-Phosphate,PM4A,C4,C00092
+2-Deoxy-D-Glucose 6-Phosphate,PM4A,C5,C06369
+D-Glucosamine-6-Phosphate,PM4A,C6,C00352
+6-Phospho-Gluconic Acid,PM4A,C7,C00345
+Cytidine-2Õ-monophosphate,PM4A,C8,C03104
+Cytidine-3Õ-monophosphate,PM4A,C9,C05822
+Cytidine-5Õ-monophosphate,PM4A,C10,C00055
+"Cytidine-2Õ,3Õ-cyclic monophosphate",PM4A,C11,C00127
+"Cytidine-3Õ,5Õ-cyclic monophosphate",PM4A,C12,C00941
+D-Mannose-1-Phosphate,PM4A,D1,C00636
+D-Mannose-6-Phosphate,PM4A,D2,C00275
+Cysteamine-S-Phosphate,PM4A,D3,
+Phospho-L-Arginine,PM4A,D4,C05945
+O-Phospho-D-Serine,PM4A,D5,C02532
+O-Phospho-L-Serine,PM4A,D6,C01005
+O-Phospho-L-Threonine,PM4A,D7,C12147
+Uridine-2Õ-monophosphate,PM4A,D8,C03031
+Uridine-3Õ-monophosphate,PM4A,D9,C01368
+Uridine-5Õ-monophosphate,PM4A,D10,C00105
+"Uridine-2Õ,3Õ-cyclic monophosphate",PM4A,D11,C02355
+"Uridine-3Õ,5Õ-cyclic monophosphate",PM4A,D12,C22509
+O-Phospho-D-Tyrosine,PM4A,E1,
+O-Phospho-L-Tyrosine,PM4A,E2,C06501
+Phosphocreatine,PM4A,E3,C02305
+Phosphoryl Choline,PM4A,E4,C00588
+O-Phosphoryl-Ethanolamine,PM4A,E5,C00346
+Phosphono Acetic Acid,PM4A,E6,C05682
+2-Aminoethyl Phosphonic Acid,PM4A,E7,C03557
+Methylene Diphosphonic Acid,PM4A,E8,D04887
+Thymidine-3Õ-monophosphate,PM4A,E9,
+Thymidine-5Õ-monophosphate,PM4A,E10,C00364
+Inositol Hexaphosphate,PM4A,E11,C01204
+"Thymidine 3Õ,5Õ-cyclic monophosphate",PM4A,E12,C00364
+Negative Control,PM4A,F1,
+Sulfate,PM4A,F2,C00059
+Thiosulfate,PM4A,F3,C00320
+Tetrathionate,PM4A,F4,C02084
+Thiophosphate,PM4A,F5,
+Dithiophosphate,PM4A,F6,
+L-Cysteine,PM4A,F7,C00097
+D-Cysteine,PM4A,F8,C00793
+L-Cysteinyl-Glycine,PM4A
