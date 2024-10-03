@@ -1,0 +1,97 @@
+Metabolite,Plate,Well,KEGG
+Negative Control,PM5,A1,
+Positive Control,PM5,A2,
+L-Alanine,PM5,A3,C00041
+L-Arginine,PM5,A4,C00062
+L-Asparagine,PM5,A5,C00152
+L-Aspartic Acid,PM5,A6,C00049
+L-Cysteine,PM5,A7,C00097
+L-Glutamic Acid,PM5,A8,C00025
+"Adenosine-3',5'-cyclic monophosphate",PM5,A9,C00575
+Adenine,PM5,A10,C00147
+Adenosine,PM5,A11,C00212
+2'-Deoxy Adenosine,PM5,A12,C00559
+L-Glutamine,PM5,B1,C00064
+Glycine,PM5,B2,C00037
+L-Histidine,PM5,B3,C00135
+L-Isoleucine,PM5,B4,C00407
+L-Leucine,PM5,B5,C00123
+L-Lysine,PM5,B6,C00047
+L-Methionine,PM5,B7,C00073
+L-Phenylalanine,PM5,B8,C00079
+"Guanosine-3',5'-cyclic monophosphate",PM5,B9,C00942
+Guanine,PM5,B10,C00242
+Guanosine,PM5,B11,C00387
+2'-Deoxy Guanosine,PM5,B12,C00330
+L-Proline,PM5,C1,C00148
+L-Serine,PM5,C2,C00065
+L-Threonine,PM5,C3,C00188
+L-Tryptophan,PM5,C4,C00078
+L-Tyrosine,PM5,C5,C00082
+L-Valine,PM5,C6,C00183
+L-isoleucine + L-Valine,PM5,C7,
+trans-4-Hydroxy L-Proline,PM5,C8,C01157
+(5) 4-Amino-Imidazole-4(5)-Carboxamide,PM5,C9,C04051
+Hypoxanthine,PM5,C10,C00262
+Inosine,PM5,C11,C00294
+2'-Deoxy Inosine,PM5,C12,C05512
+L-Ornithine,PM5,D1,C00077
+L-Citrulline,PM5,D2,C00327
+Chorismic Acid,PM5,D3,C00251
+(-)Shikimic Acid,PM5,D4,C00493
+L-Homoserine Lactone,PM5,D5,C19777
+D-Alanine,PM5,D6,C00133
+D-Aspartic Acid,PM5,D7,C00402
+D-Glutamic Acid,PM5,D8,C00217
+"D,L-alpha, epsilon-Diamino-pimelic Acid",PM5,D9,C00666
+Cytosine,PM5,D10,C00380
+Cytidine,PM5,D11,C00475
+2'-Deoxy Cytidine,PM5,D12,C00881
+Putrescine,PM5,E1,C00134
+Spermidine,PM5,E2,C00315
+Spermine,PM5,E3,C00750
+Pyridoxine,PM5,E4,C00314
+Pyridoxal,PM5,E5,C00250
+Pyridoxamine,PM5,E6,C00534
+beta-Alanine,PM5,E7,C00099
+D-Pantothenic Acid,PM5,E8,C00864
+Orotic Acid,PM5,E9,C00295
+Uracil,PM5,E10,C00106
+Uridine,PM5,E11,C00299
+2'-Deoxy Uridine,PM5,E12,C00526
+Quinolinic Acid,PM5,F1,C03722
+Nicotinic Acid,PM5,F2,C00253
+Nicotinamide,PM5,F3,C00153
+beta-Nicotinamide Adenine Dinucleotide,PM5,F4,C00003
+delta-Amino-Levulinic Acid,PM5,F5,C00430
+Hematin,PM5,F6,
+Deferoxamine Mesylate,PM5,F7,D01186
+D-(+)-Glucose,PM5,F8,C00031
+N-Acetyl D-Glucosamine,PM5,F9,C00140
+Thymine,PM5,F10,C00178
+Glutathione (reduced form),PM5,F11,C00051
+Thymidine,PM5,F12,C00214
+Oxaloacetic Acid,PM5,G1,C00036
+D-Biotin,PM5,G2,C00120
+Cyano-Cobalamine,PM5,G3,C02823
+p-Amino-Benzoic Acid,PM5,G4,C00568
+Folic Acid,PM5,G5,C00504
+Inosine + Thiamine,PM5,G6,
+Thiamine,PM5,G7,C00378
+Thiamine Pyrophosphate,PM5,G8,C00068
+Riboflavin,PM5,G9,C00255
+Pyrrolo-Quinoline Quinone,PM5,G10,C00113
+Menadione,PM5,G11,C05377
+Myo-Inositol,PM5,G12,C00137
+Butyric Acid,PM5,H1,C00246
+"D,L-alpha-Hydroxy-Butyric Acid",PM5,H2,C05984
+alpha-Ketobutyric Acid,PM5,H3,C00109
+Caprylic Acid,PM5,H4,C06423
+"D,L-alpha-Lipoic Acid (oxidized form)",PM5,H5,C00725
+"D,L-Mevalonic Acid",PM5,H6,C00418
+"D,L-Carnitine",PM5,H7,C00487
+Choline,PM5,H8,C00114
+Tween 20,PM5,H9,C11624
+Tween 40,PM5,H10,D05566
+Tween 60,PM5,H11,D05567
+Tween 80,PM5,H12,D01067
